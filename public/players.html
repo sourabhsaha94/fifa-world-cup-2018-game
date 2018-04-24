@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading text-center">
+    Search the entire database of 17000+ players
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name<input type="name" class="form-control" id="name" ng-model="searchName" ng-change="search('Name',searchName)"placeholder="Search name"></th>
+          <th>Nationality<input type="name" class="form-control" id="nation" ng-model="searchNationality" ng-change="search('Nationality',searchNationality)" placeholder="Search nationality"></th>
+          <th>
+            Position<input type="name" class="form-control" id="position" ng-model="searchPosition" ng-change="search('Preffered_Position',searchPosition)" placeholder="Search position">
+          </th>
+          <th>Rating<input type="name" class="form-control" id="rating" ng-model="searchRating" ng-change="search('Rating',searchRating)" placeholder="Search minimum rating"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="player in playerData">
+          <td>
+            {{ player.Name }}
+          </td>
+          <td>
+            {{ player.Nationality }}
+          </td>
+          <td>
+            {{ player.Preffered_Position }}
+          </td>
+          <td>
+            {{ player.Rating }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.row{
+  padding: 2em;
+}
+.team-list{
+  margin-top:1em;
+}
+.player{
+  height:100%;
+  margin: 0 auto;
+}
+.striker{
+  width:30%;
+}
+tbody{
+  overflow-y:auto;
+}
+.login-form{
+  width:50%;
+  margin: 0 auto;
+}
