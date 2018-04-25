@@ -1,68 +1,199 @@
 <div class="row">
-  <div class="col-lg-12 text-center">
-    <div class="well player striker">
-      ST
+  <div class="col s4 offset-s4">
+    <div ng-click="changeView('choosePlayer.html','ST')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['ST'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['ST'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['ST'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4 text-center">
-    <div class="well player">
-      LW
+  <div class="col s4">
+    <div ng-click="changeView('choosePlayer.html','LW')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['LW'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['LW'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['LW'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="col-lg-4 text-center">
-
+  <div class="col s4">
   </div>
-  <div class="col-lg-4 text-center">
-    <div class="well player">
-      RW
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-4 text-center">
-    <div class="well player">
-      LM
-    </div>
-  </div>
-  <div class="col-lg-4 text-center">
-    <div class="well player">
-      CM
-    </div>
-  </div>
-  <div class="col-lg-4 text-center">
-    <div class="well player">
-      RM
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-3 text-center">
-    <div class="well player">
-      LB
-    </div>
-  </div>
-  <div class="col-lg-3 text-center">
-    <div class="well player">
-      CB
-    </div>
-  </div>
-  <div class="col-lg-3 text-center">
-    <div class="well player">
-      CB
-    </div>
-  </div>
-  <div class="col-lg-3 text-center">
-    <div class="well player">
-      RB
+  <div class="col s4">
+    <div ng-click="changeView('choosePlayer.html','RW')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['RW'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['RW'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['RW'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-12 text-center">
-    <div class="well player striker">
-      GK
+  <div class="col s4">
+    <div ng-click="changeView('choosePlayer.html','LM')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['LM'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['LM'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['LM'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s4">
+    <div ng-click="changeView('choosePlayer.html','CM')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['CM'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['CM'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['CM'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s4">
+    <div ng-click="changeView('choosePlayer.html','RM')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['RM'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['RM'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['RM'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s3">
+    <div ng-click="changeView('choosePlayer.html','LB')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['LB'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['LB'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['LB'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s3">
+    <div ng-click="changeView('choosePlayer.html','CB1')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['CB1'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['CB1'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['CB1'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s3">
+    <div ng-click="changeView('choosePlayer.html','CB2')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['CB2'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['CB2'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['CB2'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s3">
+    <div ng-click="changeView('choosePlayer.html','RB')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['RB'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['RB'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['RB'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s4 offset-s4">
+    <div ng-click="changeView('choosePlayer.html','GK')" class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{ teamData['GK'].split("#")[0] }}
+        </span>
+        <div class="row">
+          <div class="col s7">
+            {{ teamData['GK'].split("#")[1] }}
+          </div>
+          <div class="col s5">
+            {{ teamData['GK'].split("#")[2] }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -5,21 +5,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="core.js"></script>
   <title>Dashboard</title>
 </head>
-<body ng-controller="mainController">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Fantasy World Cup 2018</a>
-      </div>
-      <ul class="nav navbar-nav" ng-show="login">
+<body ng-controller="mainController" ng-class="loggedInUser!==''?'green-background-color':''">
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo right" href="#">Fantasy World Cup 2018</a>
+      <ul class="left hide-on-med-and-down" ng-show="login">
+        <li ng-show="loggedInUser!==''" id="username">
+          Welcome {{loggedInUser}}
+        </li>
         <li ng-class="showView==='team.html'?'active':''">
           <a ng-click="changeView('team.html')">Team</a>
         </li>
@@ -27,13 +28,12 @@
           <a ng-click="changeView('players.html')">Players</a>
         </li>
       </ul>
-      <span style="float:right" class="navbar-brand" ng-show="loggedInUser!==''">Welcome {{loggedInUser}}</span>
     </div>
   </nav>
   <div class="container">
     <div ng-include="showView">
     </div>
   </div>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </body>
 </html>

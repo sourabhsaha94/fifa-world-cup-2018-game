@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">
+      Click to choose (Showing top 20 results)
+    </div>
+    <table class="responsive-table highlight">
+      <thead>
+        <tr>
+          <th>Name<br /><input type="name" id="name" ng-model="searchName" ng-change="searchPlayer('Name',searchName)"placeholder="Search name"></th>
+          <th>Nationality<br /><input type="name" id="nation" ng-model="searchNationality" ng-change="searchPlayer('Nationality',searchNationality)" placeholder="Search nationality"></th>
+          <th>Rating<br /><input type="name" id="rating" ng-model="searchRating" ng-change="searchPlayer('Rating',searchRating)" placeholder="Search maximum rating"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="cursor:pointer" ng-repeat="player in playerData" ng-click="addPlayer(player.Name,player.Nationality,player.Rating)">
+          <td>
+            {{ player.Name }}
+          </td>
+          <td>
+            {{ player.Nationality }}
+          </td>
+          <td>
+            {{ player.Rating }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

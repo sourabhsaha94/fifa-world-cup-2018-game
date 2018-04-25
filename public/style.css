@@ -1,20 +1,17 @@
-.row{
-  padding: 2em;
+.green-background-color{
+  background-color: #228b22;
 }
-.team-list{
-  margin-top:1em;
+.brand-logo{
+  margin-left: 1%;
 }
-.player{
-  height:100%;
-  margin: 0 auto;
+.container{
+  margin-top: 2%;
 }
-.striker{
-  width:30%;
+.nav-wrapper ul{
+  width: 50%;
 }
-tbody{
-  overflow-y:auto;
-}
-.login-form{
-  width:50%;
-  margin: 0 auto;
+#username{
+  font-size: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
