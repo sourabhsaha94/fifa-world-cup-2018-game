@@ -1,18 +1,20 @@
-<div class="row">
-  <form class="col s12">
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="first_name" type="text" class="validate" ng-model="user">
-        <label for="first_name">Username</label>
+<div class="container login">
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="first_name" type="text" class="validate" ng-model="user">
+          <label for="first_name">Username</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate" ng-model="pwd">
-        <label for="password">Password</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" ng-model="pwd">
+          <label for="password">Password</label>
+        </div>
       </div>
-    </div>
-    <a ng-click="verify(user,pwd) "class="waves-effect waves-light btn">Login</a>
-    <a ng-click="changeView('register.html')" class="waves-effect waves-light btn">Register</a>
-  </form>
+      <a ng-click="verify(user,pwd) "class="waves-effect waves-light btn">Login</a>
+      <a ng-click="changeView('register.html')" class="waves-effect waves-light btn">Register</a>
+    </form>
+  </div>
 </div>

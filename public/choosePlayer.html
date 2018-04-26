@@ -9,10 +9,11 @@
           <th>Name<br /><input type="name" id="name" ng-model="searchName" ng-change="searchPlayer('Name',searchName)"placeholder="Search name"></th>
           <th>Nationality<br /><input type="name" id="nation" ng-model="searchNationality" ng-change="searchPlayer('Nationality',searchNationality)" placeholder="Search nationality"></th>
           <th>Rating<br /><input type="name" id="rating" ng-model="searchRating" ng-change="searchPlayer('Rating',searchRating)" placeholder="Search maximum rating"></th>
+          <th>Value<br/><input type="name" id="value" ng-model="searchValue" ng-change="searchPlayer('Value',searchValue)" placeholder="Search maximum value"></th>
         </tr>
       </thead>
       <tbody>
-        <tr style="cursor:pointer" ng-repeat="player in playerData" ng-click="addPlayer(player.Name,player.Nationality,player.Rating)">
+        <tr style="cursor:pointer" ng-repeat="player in validate()" ng-click="addPlayer(player.Name,player.Nationality,player.Rating,player.Value)">
           <td>
             {{ player.Name }}
           </td>
@@ -22,8 +23,14 @@
           <td>
             {{ player.Rating }}
           </td>
+          <td>
+            ${{ player.Value }}m
+          </td>
         </tr>
       </tbody>
     </table>
+    <div ng-show="validate().length===0" class="card-action">
+      There are no players that fit you're budget
+    </div>
   </div>
 </div>

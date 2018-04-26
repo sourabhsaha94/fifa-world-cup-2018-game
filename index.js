@@ -6,14 +6,21 @@ var bodyParser = require('body-parser');
 var collection = null;
 var db = null;
 var localtunnel = require('localtunnel');
+var fs = require('fs');
+var schedule = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+// var tunnel = localtunnel(8080,{subdomain:'fantasyfifaworldcup2018'}, function(err, tunnel) {
+//   console.log(tunnel.url);
+// });
+//
+// tunnel.on('close', function() {
+//     // tunnels are closed
+// });
 
-var tunnel = localtunnel(8080,{subdomain:'fantasyfifaworldcup2018'}, function(err, tunnel) {
-  console.log(tunnel.url);
-});
+var teamList = [];
 
-tunnel.on('close', function() {
-    // tunnels are closed
-});
+for(let i=0;i<schedule.teams.length;i++){
+  teamList.push(schedule.teams[i].name);
+}
 
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
@@ -22,7 +29,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing
 app.get('/players',function(req,res){
   playerCollection = db.collection('players');
   playerCollection.find({},{limit:20}).toArray(function(err,data){
-    res.send(data);
+    var toSend = data.filter(function(player){
+      if(teamList.includes(player.Nationality))
+        return true;
+    });
+    res.send(toSend);
   });
 });
 
@@ -42,13 +53,20 @@ app.get('/search/player/all/:type/:value',function(req,res){
     case 'Nationality':
     query = {Nationality:{$regex:value}};
     break;
+    case 'Value':
+    query = {Value:{$lte:Number(value)}};
+    break;
     case 'Preffered_Position':
     query = {Preffered_Position:{$regex:value}};
     break;
   }
   playerCollection = db.collection('players');
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
-    res.send(data);
+    var toSend = data.filter(function(player){
+      if(teamList.includes(player.Nationality))
+        return true;
+    });
+    res.send(toSend);
   });
 
 });
@@ -58,7 +76,9 @@ app.get('/search/player/one/:position/:type/:value',function(req,res){
   var value = req.params.value;
   var position = req.params.position;
   var query = {};
-
+  if(position=='CB1' || position=='CB2'){
+    position = 'CB';
+  }
   switch(type){
     case 'Name':
     query = {Name:{$regex:value},Preffered_Position:{$regex:position}};
@@ -69,24 +89,36 @@ app.get('/search/player/one/:position/:type/:value',function(req,res){
     case 'Nationality':
     query = {Nationality:{$regex:value},Preffered_Position:{$regex:position}};
     break;
+    case 'Value':
+    query = {Value:{$lte:Number(value)},Preffered_Position:{$regex:position}};
+    break;
   }
   playerCollection = db.collection('players');
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
-    res.send(data);
+    var toSend = data.filter(function(player){
+      if(teamList.includes(player.Nationality))
+        return true;
+    });
+    res.send(toSend);
   });
 
 });
 
-app.get('/search/player/position/:position',function(req,res){
+app.get('/search/player/position/:position/:value',function(req,res){
   var position = req.params.position;
+  var value = Number(req.params.value);
   if(position=='CB1' || position=='CB2'){
     position = 'CB';
   }
-  var query = {Preffered_Position:{$regex:position}};
+  var query = {Value:{$lte:Number(value)},Preffered_Position:{$regex:position}};
 
   playerCollection = db.collection('players');
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
-    res.send(data);
+    var toSend = data.filter(function(player){
+      if(teamList.includes(player.Nationality))
+        return true;
+    });
+    res.send(toSend);
   });
 
 });
@@ -120,7 +152,7 @@ app.post('/register', function (req, res) {
     }
     else{
       teamCollection = db.collection("teams");
-      teamCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK'},
+      teamCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK','credit':500},
       function(err,r){
         if(err){
           res.send("error");
@@ -139,40 +171,101 @@ app.post('/add/player/',function(req,res){
   var query = {};
   switch(pos){
     case 'ST':
-    query = {'ST':req.body.name};
+    query = {'ST':req.body.name,'credit':req.body.credit};
     break;
     case 'LW':
-    query = {'LW':req.body.name};
+    query = {'LW':req.body.name,'credit':req.body.credit};
     break;
     case 'RW':
-    query = {'RW':req.body.name};
+    query = {'RW':req.body.name,'credit':req.body.credit};
     break;
     case 'LM':
-    query = {'LM':req.body.name};
+    query = {'LM':req.body.name,'credit':req.body.credit};
     break;
     case 'CM':
-    query = {'CM':req.body.name};
+    query = {'CM':req.body.name,'credit':req.body.credit};
     break;
     case 'RM':
-    query = {'RM':req.body.name};
+    query = {'RM':req.body.name,'credit':req.body.credit};
     break;
     case 'LB':
-    query = {'LB':req.body.name};
+    query = {'LB':req.body.name,'credit':req.body.credit};
     break;
     case 'CB1':
-    query = {'CB1':req.body.name};
+    query = {'CB1':req.body.name,'credit':req.body.credit};
     break;
     case 'CB2':
-    query = {'CB2':req.body.name};
+    query = {'CB2':req.body.name,'credit':req.body.credit};
     break;
     case 'RB':
-    query = {'RB':req.body.name};
+    query = {'RB':req.body.name,'credit':req.body.credit};
     break;
     case 'GK':
-    query = {'GK':req.body.name};
+    query = {'GK':req.body.name,'credit':req.body.credit};
     break;
   }
-  console.log(query,req.body);
+  //console.log(query,req.body);
+  teamCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
+    if(err){
+      res.send("error");
+    }
+    else{
+      teamCollection.findOne({user:req.body.user},function(err,r){
+        if(err){
+          res.send("error");
+        }
+        else{
+          if(r!==null){
+            res.send(r);
+          }
+          else {
+            res.send("access_denied");
+          }
+        }
+      });
+    }
+  });
+});
+app.post('/delete/player/',function(req,res){
+  teamCollection = db.collection("teams");
+  var pos = req.body.position;
+  var query = {};
+  switch(pos){
+    case 'ST':
+    query = {'ST':'ST','credit':req.body.credit};
+    break;
+    case 'LW':
+    query = {'LW':'LW','credit':req.body.credit};
+    break;
+    case 'RW':
+    query = {'RW':'RW','credit':req.body.credit};
+    break;
+    case 'LM':
+    query = {'LM':'LM','credit':req.body.credit};
+    break;
+    case 'CM':
+    query = {'CM':'CM','credit':req.body.credit};
+    break;
+    case 'RM':
+    query = {'RM':'RM','credit':req.body.credit};
+    break;
+    case 'LB':
+    query = {'LB':'LB','credit':req.body.credit};
+    break;
+    case 'CB1':
+    query = {'CB1':'CB1','credit':req.body.credit};
+    break;
+    case 'CB2':
+    query = {'CB2':'CB2','credit':req.body.credit};
+    break;
+    case 'RB':
+    query = {'RB':'RB','credit':req.body.credit};
+    break;
+    case 'GK':
+    query = {'GK':'GK','credit':req.body.credit};
+    break;
+  }
+  //console.log(query,req.body);
   teamCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
     if(err){
       res.send("error");

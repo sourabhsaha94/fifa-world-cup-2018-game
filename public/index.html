@@ -5,33 +5,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="core.js"></script>
-  <title>Dashboard</title>
+  <title>FFWC18</title>
 </head>
 <body ng-controller="mainController" ng-class="loggedInUser!==''?'green-background-color':''">
   <nav>
     <div class="nav-wrapper">
       <a class="brand-logo right" href="#">Fantasy World Cup 2018</a>
-      <ul class="left hide-on-med-and-down" ng-show="login">
-        <li ng-show="loggedInUser!==''" id="username">
+      <ul class="left">
+        <li ng-show="loggedInUser!=='' && login" id="username">
           Welcome {{loggedInUser}}
         </li>
-        <li ng-class="showView==='team.html'?'active':''">
+        <li ng-show="loggedInUser==='' && !login" id="username">
+          {{ showView.split(".")[0] }}
+        </li>
+        <li ng-class="showView==='team.html'?'active':''" ng-show="login">
           <a ng-click="changeView('team.html')">Team</a>
         </li>
-        <li ng-class="showView==='players.html'?'active':''">
+        <li ng-class="showView==='players.html'?'active':''" ng-show="login">
           <a ng-click="changeView('players.html')">Players</a>
         </li>
       </ul>
     </div>
   </nav>
-  <div class="container">
-    <div ng-include="showView">
+  <div class="row">
+    <div class="col s10">
+      <div  class="main-col" ng-include="showView">
+      </div>
+    </div>
+    <div class="col s2" ng-show="showView!=='login.html' && showView!=='register.html'">
+      <div class="main-col" ng-include="'sidebar.html'">
+      </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

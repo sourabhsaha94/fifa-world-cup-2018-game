@@ -1,17 +1,33 @@
 <div class="row">
   <div class="col s4 offset-s4">
-    <div ng-click="changeView('choosePlayer.html','ST')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options1=true" ng-mouseleave="options1=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['ST'].split("#")[0] }}
+          <span>{{ teamData['ST'].split("#")[0] }}</span>
+          <span ng-show="options1" ng-click="deletePlayer('ST')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options1" ng-click="changeView('choosePlayer.html','ST')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['ST'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['ST'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['ST'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
@@ -19,18 +35,34 @@
 </div>
 <div class="row">
   <div class="col s4">
-    <div ng-click="changeView('choosePlayer.html','LW')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options2=true" ng-mouseleave="options2=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['LW'].split("#")[0] }}
+          <span>{{ teamData['LW'].split("#")[0] }}</span>
+          <span ng-show="options2" ng-click="deletePlayer('LW')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options2" ng-click="changeView('choosePlayer.html','LW')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['LW'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['LW'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['LW'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
@@ -38,18 +70,34 @@
   <div class="col s4">
   </div>
   <div class="col s4">
-    <div ng-click="changeView('choosePlayer.html','RW')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options3=true" ng-mouseleave="options3=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['RW'].split("#")[0] }}
+          <span>{{ teamData['RW'].split("#")[0] }}</span>
+          <span ng-show="options3" ng-click="deletePlayer('RW')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options3" ng-click="changeView('choosePlayer.html','RW')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['RW'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['RW'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['RW'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
@@ -57,51 +105,99 @@
 </div>
 <div class="row">
   <div class="col s4">
-    <div ng-click="changeView('choosePlayer.html','LM')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options4=true" ng-mouseleave="options4=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['LM'].split("#")[0] }}
+          <span>{{ teamData['LM'].split("#")[0] }}</span>
+          <span ng-show="options4" ng-click="deletePlayer('LM')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options4" ng-click="changeView('choosePlayer.html','LM')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['LM'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['LM'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['LM'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col s4">
-    <div ng-click="changeView('choosePlayer.html','CM')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options5=true" ng-mouseleave="options5=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['CM'].split("#")[0] }}
+          <span>{{ teamData['CM'].split("#")[0] }}</span>
+          <span ng-show="options5" ng-click="deletePlayer('CM')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options5" ng-click="changeView('choosePlayer.html','CM')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['CM'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['CM'].split("#")[2] }}
+          </div>
+          <div class="col s3">
+            ${{ teamData['CM'].split("#")[3] }}m
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col s4">
-    <div ng-click="changeView('choosePlayer.html','RM')" class="card">
+    <div class="card card-hover" ng-mouseenter="options6=true" ng-mouseleave="options6=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['RM'].split("#")[0] }}
+          <span>{{ teamData['RM'].split("#")[0] }}</span>
+          <span ng-show="options6" ng-click="deletePlayer('RM')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options6"  ng-click="changeView('choosePlayer.html','RM')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['RM'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['RM'].split("#")[2] }}
+          </div>
+          <div class="col s3">
+            ${{ teamData['RM'].split("#")[3] }}m
           </div>
         </div>
       </div>
@@ -110,68 +206,132 @@
 </div>
 <div class="row">
   <div class="col s3">
-    <div ng-click="changeView('choosePlayer.html','LB')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options7=true" ng-mouseleave="options7=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['LB'].split("#")[0] }}
+          <span>{{ teamData['LB'].split("#")[0] }}</span>
+          <span ng-show="options7" ng-click="deletePlayer('LB')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options7" ng-click="changeView('choosePlayer.html','LB')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['LB'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['LB'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['LB'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col s3">
-    <div ng-click="changeView('choosePlayer.html','CB1')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options8=true" ng-mouseleave="options8=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['CB1'].split("#")[0] }}
+          <span>{{ teamData['CB1'].split("#")[0] }}</span>
+          <span ng-show="options8" ng-click="deletePlayer('CB1')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options8" ng-click="changeView('choosePlayer.html','CB1')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['CB1'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['CB1'].split("#")[2] }}
           </div>
+          <div class="col s3">
+            ${{ teamData['CB1'].split("#")[3] }}m
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col s3">
-    <div ng-click="changeView('choosePlayer.html','CB2')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options9=true" ng-mouseleave="options9=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['CB2'].split("#")[0] }}
+          <span>{{ teamData['CB2'].split("#")[0] }}</span>
+          <span ng-show="options9" ng-click="deletePlayer('CB2')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options9" ng-click="changeView('choosePlayer.html','CB2')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['CB2'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['CB2'].split("#")[2] }}
+          </div>
+          <div class="col s3">
+            ${{ teamData['CB2'].split("#")[3] }}m
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col s3">
-    <div ng-click="changeView('choosePlayer.html','RB')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options10=true" ng-mouseleave="options10=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['RB'].split("#")[0] }}
+          <span>{{ teamData['RB'].split("#")[0] }}</span>
+          <span ng-show="options10"  ng-click="deletePlayer('RB')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options10"  ng-click="changeView('choosePlayer.html','RB')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['RB'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['RB'].split("#")[2] }}
+          </div>
+          <div class="col s3">
+            ${{ teamData['RB'].split("#")[3] }}m
           </div>
         </div>
       </div>
@@ -180,17 +340,33 @@
 </div>
 <div class="row">
   <div class="col s4 offset-s4">
-    <div ng-click="changeView('choosePlayer.html','GK')" class="card">
+    <div  class="card card-hover" ng-mouseenter="options11=true" ng-mouseleave="options11=false">
       <div class="card-content">
         <span class="card-title">
-          {{ teamData['GK'].split("#")[0] }}
+          <span>{{ teamData['GK'].split("#")[0] }}</span>
+          <span ng-show="options11" ng-click="deletePlayer('GK')" style="float:right;margin-left:1em"><i class="material-icons">delete</i></span>
+          <span ng-show="options11" ng-click="changeView('choosePlayer.html','GK')" style="float:right"><i class="material-icons">mode_edit</i></span>
         </span>
         <div class="row">
-          <div class="col s7">
+          <div class="col s6">
+            Nationality
+          </div>
+          <div class="col s3">
+            Rating
+          </div>
+          <div class="col s3">
+            Value
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
             {{ teamData['GK'].split("#")[1] }}
           </div>
-          <div class="col s5">
+          <div class="col s3">
             {{ teamData['GK'].split("#")[2] }}
+          </div>
+          <div class="col s3">
+            ${{ teamData['GK'].split("#")[3] }}m
           </div>
         </div>
       </div>

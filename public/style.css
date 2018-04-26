@@ -1,11 +1,11 @@
+body{
+  overflow-x: hidden;
+}
 .green-background-color{
   background-color: #228b22;
 }
 .brand-logo{
   margin-left: 1%;
-}
-.container{
-  margin-top: 2%;
 }
 .nav-wrapper ul{
   width: 50%;
@@ -13,5 +13,29 @@
 #username{
   font-size: 2em;
   margin-left: 1em;
-  margin-right: 1em;
+  margin-right: 2.6em;
+}
+.sidebar{
+  background-color: #EE6E73;
+  color:white;
+}
+.card-hover{
+  background-color: white;
+  color:black;
+  transition: background-color 5s linear;
+}
+.card-hover :hover{
+  background-color: #EE6E73;
+  color:white;
+  cursor: pointer;
+}
+nav {
+  position: fixed;
+  z-index: 1;
+}
+.main-col{
+  margin-top: 5em;
+}
+.transfer-credit{
+  font-size: 3em;
 }

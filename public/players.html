@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      Search the entire player database of 17000+ players (Showing top 20 results)
+      Search the entire player database (Showing top 20 results)
     </div>
     <table class="responsive-table highlight">
       <thead>
@@ -12,6 +12,7 @@
             Position<input type="name" id="position" ng-model="searchPosition" ng-change="search('Preffered_Position',searchPosition)" placeholder="Search position">
           </th>
           <th>Rating<input type="name" id="rating" ng-model="searchRating" ng-change="search('Rating',searchRating)" placeholder="Search maximum rating"></th>
+          <th>Value<input type="name" id="value" ng-model="searchValue" ng-change="search('Value',searchValue)" placeholder="Search maximum value"></th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,9 @@
           </td>
           <td>
             {{ player.Rating }}
+          </td>
+          <td>
+            ${{ player.Value }}m
           </td>
         </tr>
       </tbody>
