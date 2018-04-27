@@ -67,33 +67,39 @@ app.controller('mainController',function($scope,$http){
     }
   };
 
-  $scope.search = function(type,value){
+  $scope.search = function(name,nationality,position,rating,value){
 
-    if(value===""){
-      $http.get("http://"+ip_address+"/players").then(function(res){
-        $scope.playerData = res.data;
-      });
+    var toSend = {};
+
+    if(name){
+      toSend.name = name;
+    }
+    if(nationality){
+      toSend.nationality = nationality;
+    }
+    if(position){
+      if(position==='CHOOSE_PLAYER')
+        toSend.position = $scope.position;
+      else
+        toSend.position = position;
+    }
+    if(rating){
+      toSend.rating = rating;
+    }
+    if(value){
+      toSend.value = value;
     }
 
-    if(value.match(/^[a-z0-9]+$/i) !== null){
-      $http.get("http://"+ip_address+"/search/player/all/"+type+"/"+value).then(function(res){
-        $scope.playerData = res.data;
-      });
-    }
-  };
-
-  $scope.searchPlayer = function(type,value){
-
-    if(value===""){
+    if(Object.keys(toSend).length === 0){
       $http.get("http://"+ip_address+"/search/player/position/"+$scope.position+"/"+$scope.transferCredits).then(function(res){
         $scope.playerData = res.data;
       });
     }
-
-    if(value.match(/^[a-z0-9]+$/i) !== null)
-    $http.get("http://"+ip_address+"/search/player/one/"+$scope.position+"/"+type+"/"+value).then(function(res){
-      $scope.playerData = res.data;
-    });
+    else{
+      $http.post('/search/player',JSON.stringify(toSend)).then(function(res){
+        $scope.playerData = res.data;
+      });
+    }
   };
 
   $scope.addPlayer = function(name,nationality,rating,value){
@@ -108,18 +114,22 @@ app.controller('mainController',function($scope,$http){
   };
 
   $scope.deletePlayer = function(pos){
-    var deletePlayerDetails = {'user':$scope.loggedInUser,'position':pos,'credit':Math.floor($scope.transferCredits + Number($scope.teamData[pos].split("#")[3]))};
-    $http.post('/delete/player',JSON.stringify(deletePlayerDetails)).then(function(res){
-      $scope.teamData = res.data;
-      $scope.transferCredits = res.data.credit;
-    });
+    console.log(pos)
+    if($scope.teamData[pos].split("#")>1)
+    {
+      var deletePlayerDetails = {'user':$scope.loggedInUser,'position':pos,'credit':Math.floor($scope.transferCredits + Number($scope.teamData[pos].split("#")[3]))};
+      $http.post('/delete/player',JSON.stringify(deletePlayerDetails)).then(function(res){
+        $scope.teamData = res.data;
+        $scope.transferCredits = res.data.credit;
+      });
+    }
   };
 
   $scope.validate = function(){
     //console.log($scope.transferCredits,$scope.playerData);
     var validatedArray = $scope.playerData.filter(function(p){
       if(p.Value<$scope.transferCredits)
-        return true;
+      return true;
     });
     return validatedArray;
   }

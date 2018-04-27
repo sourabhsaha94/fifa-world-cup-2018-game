@@ -165,6 +165,40 @@ app.post('/register', function (req, res) {
   });
 });
 
+app.post('/search/player/',function(req,res){
+
+  var query = {};
+
+  var keysArray = Object.keys(req.body);
+
+  playerCollection = db.collection('players');
+
+  if(keysArray.includes('name')){
+    query["Name"] = {$regex:req.body.name};
+  }
+  if(keysArray.includes('rating')){
+    query["Rating"] = {$lte:Number(req.body.rating)};
+  }
+  if(keysArray.includes('nationality')){
+    query["Nationality"] = {$regex:req.body.nationality};
+  }
+  if(keysArray.includes('value')){
+    query["Value"] = {$lte:Number(req.body.value)};
+  }
+  if(keysArray.includes('position')){
+    query["Preffered_Position"] = {$regex:req.body.position};
+  }
+
+  playerCollection.find(query,{limit:20}).toArray(function(err,data){
+    var toSend = data.filter(function(player){
+      if(teamList.includes(player.Nationality))
+        return true;
+    });
+    res.send(toSend);
+  });
+
+});
+
 app.post('/add/player/',function(req,res){
   teamCollection = db.collection("teams");
   var pos = req.body.position;

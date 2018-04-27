@@ -6,10 +6,10 @@
     <table class="responsive-table highlight">
       <thead>
         <tr>
-          <th>Name<br /><input type="name" id="name" ng-model="searchName" ng-change="searchPlayer('Name',searchName)"placeholder="Search name"></th>
-          <th>Nationality<br /><input type="name" id="nation" ng-model="searchNationality" ng-change="searchPlayer('Nationality',searchNationality)" placeholder="Search nationality"></th>
-          <th>Rating<br /><input type="name" id="rating" ng-model="searchRating" ng-change="searchPlayer('Rating',searchRating)" placeholder="Search maximum rating"></th>
-          <th>Value<br/><input type="name" id="value" ng-model="searchValue" ng-change="searchPlayer('Value',searchValue)" placeholder="Search maximum value"></th>
+          <th>Name<br /><input type="name" id="name" ng-model="searchName" ng-change="search(searchName,searchNationality,'CHOOSE_PLAYER',searchRating,searchValue)"placeholder="Search name"></th>
+          <th>Nationality<br /><input type="name" id="nation" ng-model="searchNationality" ng-change="search(searchName,searchNationality,'CHOOSE_PLAYER',searchRating,searchValue)" placeholder="Search nationality"></th>
+          <th>Rating<br /><input type="name" id="rating" ng-model="searchRating" ng-change="search(searchName,searchNationality,'CHOOSE_PLAYER',searchRating,searchValue)" placeholder="Search maximum rating"></th>
+          <th>Value<br/><input type="name" id="value" ng-model="searchValue" ng-change="search(searchName,searchNationality,'CHOOSE_PLAYER',searchRating,searchValue)" placeholder="Search maximum value"></th>
         </tr>
       </thead>
       <tbody>
