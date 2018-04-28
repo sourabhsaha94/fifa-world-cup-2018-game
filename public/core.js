@@ -1,15 +1,15 @@
 var app = angular.module('myApp',[]);
 app.controller('mainController',function($scope,$http){
   var ip_address = "192.168.33.123:8080";
-  //var ip_address = "fantasyfifaworldcup2018.localtunnel.me";
-  $scope.loggedInUser = "";
-  $scope.position = "";
-  $scope.showView = 'login.html';
-  $scope.login = false;
-  $scope.loggedInUuid = "";
-  $scope.transferCredits = 0;
-  $scope.editInProgress = false;
 
+  $scope.loggedInUser = "";//stores value of user logged in
+  $scope.position = "";//stores value of player being edited
+  $scope.showView = 'login.html';//stores value of current page being shown
+  $scope.login = false;//stores boolean value to indicated if login successful or not
+  $scope.transferCredits = 0;//stores how many transfer credits left for the user to use
+  $scope.editInProgress = false;//indicates if edit is being done
+/***************************verification and login*******************************/
+  //verification of user
   $scope.verify = function(username,password){
     var loginDetails = {'user':username,'pwd':password};
     $http.post('/login',JSON.stringify(loginDetails)).then(function(res){
@@ -23,6 +23,7 @@ app.controller('mainController',function($scope,$http){
     });
   };
 
+  //registration of new user
   $scope.createUser = function(username,password){
     var newUserDetails = {'user':username,'pwd':password};
     $http.post('/register',JSON.stringify(newUserDetails)).then(function(res){
@@ -34,7 +35,9 @@ app.controller('mainController',function($scope,$http){
     });
   }
 
+/***************************index page*******************************/
 
+  //manages page view change and retrieval of relevant data
   $scope.changeView = function(viewName,pos){
     $scope.showView = viewName;
 
@@ -65,8 +68,18 @@ app.controller('mainController',function($scope,$http){
         $scope.playerData = res.data;
       });
     }
+
+    else if (viewName === 'groups.html') {
+      $http.get("http://"+ip_address+"/group/list").then(function(res){
+        $scope.groupData = res.data;
+      });
+    }
+
   };
 
+/***************************search functionality*******************************/
+
+  //search for players based on multiple attributes
   $scope.search = function(name,nationality,position,rating,value){
 
     var toSend = {};
@@ -102,6 +115,9 @@ app.controller('mainController',function($scope,$http){
     }
   };
 
+/***************************team changes*******************************/
+
+  //add player to user's squad
   $scope.addPlayer = function(name,nationality,rating,value){
     var combinedString = name+"#"+nationality+"#"+rating+"#"+value;
     $scope.editInProgress = false;
@@ -113,6 +129,7 @@ app.controller('mainController',function($scope,$http){
     });
   };
 
+  //delete player from user's squad
   $scope.deletePlayer = function(pos){
     if($scope.teamData[pos].split("#").length>1)
     {
@@ -124,12 +141,17 @@ app.controller('mainController',function($scope,$http){
     }
   };
 
+  //validate if players retrieved have value less than transferCredits value
   $scope.validate = function(){
-    //console.log($scope.transferCredits,$scope.playerData);
     var validatedArray = $scope.playerData.filter(function(p){
       if(p.Value<$scope.transferCredits)
       return true;
     });
     return validatedArray;
-  }
+  };
+
+
+  /***************************group standings*******************************/
+  $scope.groupData = [];
+
 });

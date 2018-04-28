@@ -3,19 +3,10 @@ const express = require('express');
 const app = express();
 var path = require("path");
 var bodyParser = require('body-parser');
-var collection = null;
 var db = null;
 var localtunnel = require('localtunnel');
 var fs = require('fs');
 var schedule = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-// var tunnel = localtunnel(8080,{subdomain:'fantasyfifaworldcup2018'}, function(err, tunnel) {
-//   console.log(tunnel.url);
-// });
-//
-// tunnel.on('close', function() {
-//     // tunnels are closed
-// });
-
 var teamList = [];
 
 for(let i=0;i<schedule.teams.length;i++){
@@ -26,12 +17,58 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing
 
+/*****************************login and registration**************************************/
+
+app.post('/login', function (req, res) {
+  authCollection = db.collection("users");
+  authCollection.findOne({Username:req.body.user,Password:req.body.pwd},function(err,r){
+    if(err){
+      res.send("error");
+    }
+    else{
+      if(r!==null){
+        var query = {'user':r.Username};
+        lineupCollection = db.collection('lineup');
+        lineupCollection.find(query,{limit:20}).toArray(function(err,data){
+          res.send({Team:data,Username:r.Username,Schedule:schedule});
+        });
+      }
+      else {
+        res.send("access_denied");
+      }
+    }
+  });
+});
+
+app.post('/register', function (req, res) {
+  authCollection = db.collection("users");
+  authCollection.insertOne({Username:req.body.user,Password:req.body.pwd},function(err,r){
+    if(err){
+      res.send("error");
+    }
+    else{
+      lineupCollection = db.collection('lineup');
+      lineupCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK','credit':500},
+      function(err,r){
+        if(err){
+          res.send("error");
+        }
+        else{
+          res.send("done");
+        }
+      });
+    }
+  });
+});
+
+/*****************************search players**************************************/
+
 app.get('/players',function(req,res){
   playerCollection = db.collection('players');
   playerCollection.find({},{limit:20}).toArray(function(err,data){
     var toSend = data.filter(function(player){
       if(teamList.includes(player.Nationality))
-        return true;
+      return true;
     });
     res.send(toSend);
   });
@@ -64,7 +101,7 @@ app.get('/search/player/all/:type/:value',function(req,res){
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
     var toSend = data.filter(function(player){
       if(teamList.includes(player.Nationality))
-        return true;
+      return true;
     });
     res.send(toSend);
   });
@@ -97,7 +134,7 @@ app.get('/search/player/one/:position/:type/:value',function(req,res){
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
     var toSend = data.filter(function(player){
       if(teamList.includes(player.Nationality))
-        return true;
+      return true;
     });
     res.send(toSend);
   });
@@ -116,54 +153,13 @@ app.get('/search/player/position/:position/:value',function(req,res){
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
     var toSend = data.filter(function(player){
       if(teamList.includes(player.Nationality))
-        return true;
+      return true;
     });
     res.send(toSend);
   });
 
 });
 
-app.post('/login', function (req, res) {
-  authCollection = db.collection("users");
-  authCollection.findOne({Username:req.body.user,Password:req.body.pwd},function(err,r){
-    if(err){
-      res.send("error");
-    }
-    else{
-      if(r!==null){
-        var query = {'user':r.Username};
-        teamCollection = db.collection('teams');
-        teamCollection.find(query,{limit:20}).toArray(function(err,data){
-          res.send({Team:data,Username:r.Username,Schedule:schedule});
-        });
-      }
-      else {
-        res.send("access_denied");
-      }
-    }
-  });
-});
-
-app.post('/register', function (req, res) {
-  authCollection = db.collection("users");
-  authCollection.insertOne({Username:req.body.user,Password:req.body.pwd},function(err,r){
-    if(err){
-      res.send("error");
-    }
-    else{
-      teamCollection = db.collection("teams");
-      teamCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK','credit':500},
-      function(err,r){
-        if(err){
-          res.send("error");
-        }
-        else{
-          res.send("done");
-        }
-      });
-    }
-  });
-});
 
 app.post('/search/player/',function(req,res){
 
@@ -192,15 +188,17 @@ app.post('/search/player/',function(req,res){
   playerCollection.find(query,{limit:20}).toArray(function(err,data){
     var toSend = data.filter(function(player){
       if(teamList.includes(player.Nationality))
-        return true;
+      return true;
     });
     res.send(toSend);
   });
 
 });
 
+/*****************************add and delete player**************************************/
+
 app.post('/add/player/',function(req,res){
-  teamCollection = db.collection("teams");
+  lineupCollection = db.collection('lineup');
   var pos = req.body.position;
   var query = {};
   switch(pos){
@@ -239,12 +237,12 @@ app.post('/add/player/',function(req,res){
     break;
   }
   //console.log(query,req.body);
-  teamCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
+  lineupCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
     if(err){
       res.send("error");
     }
     else{
-      teamCollection.findOne({user:req.body.user},function(err,r){
+      lineupCollection.findOne({user:req.body.user},function(err,r){
         if(err){
           res.send("error");
         }
@@ -261,7 +259,7 @@ app.post('/add/player/',function(req,res){
   });
 });
 app.post('/delete/player/',function(req,res){
-  teamCollection = db.collection("teams");
+  lineupCollection = db.collection('lineup');
   var pos = req.body.position;
   var query = {};
   switch(pos){
@@ -300,12 +298,12 @@ app.post('/delete/player/',function(req,res){
     break;
   }
   //console.log(query,req.body);
-  teamCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
+  lineupCollection.updateOne({user:req.body.user},{$set:query},function(err,r){
     if(err){
       res.send("error");
     }
     else{
-      teamCollection.findOne({user:req.body.user},function(err,r){
+      lineupCollection.findOne({user:req.body.user},function(err,r){
         if(err){
           res.send("error");
         }
@@ -322,6 +320,30 @@ app.post('/delete/player/',function(req,res){
   });
 });
 
+/*****************************group standings**************************************/
+
+app.get("/group/list",function(req,res){
+  teamCollection = db.collection("teams");
+  teamCollection.find().sort({"id":1}).toArray(function(err,data){
+    let teams = data;
+    let mapping = schedule.groupMapping;
+    let keys = Object.keys(mapping);
+    let allGroups = [];
+    for(i=0;i<keys.length;i++){
+      let group = {"name":"","teams":[]};
+      let startId = mapping[keys[i]];
+      group.name = keys[i];
+      for(j=startId-1;j<(startId+3);j++){
+        group.teams.push(teams[j]);
+      }
+      allGroups.push(group);
+    }
+    res.send(allGroups);
+  });
+});
+
+/*****************************connection scripts**************************************/
+
 app.listen(8080,function(){
   console.log("Listening at 8080");
 });
@@ -332,7 +354,7 @@ MongoClient.connect("mongodb://localhost:27017",function(err,client){
     console.log("error");
   }
   else{
-      console.log("Connected");
-      db = client.db('fifa');
+    console.log("Connected");
+    db = client.db('fifa');
   }
 });

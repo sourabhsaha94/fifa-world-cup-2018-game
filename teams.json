@@ -2,161 +2,415 @@
   {
     "id": 1,
     "name": "Russia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
     "iso2": "ru"
   },
   {
     "id": 2,
     "name": "Saudi Arabia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
     "iso2": "sa"
   },
   {
     "id": 3,
     "name": "Egypt",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "eg"
   },
   {
     "id": 4,
     "name": "Uruguay",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "uy"
   },
   {
     "id": 5,
     "name": "Portugal",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "pt"
   },
   {
     "id": 6,
     "name": "Spain",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "es"
   },
   {
     "id": 7,
     "name": "Morocco",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "ma"
   },
   {
     "id": 8,
     "name": "Iran",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "ir"
   },
   {
     "id": 9,
     "name": "France",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "fr"
   },
   {
     "id": 10,
     "name": "Australia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "au"
   },
   {
     "id": 11,
     "name": "Peru",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "pe"
   },
   {
     "id": 12,
     "name": "Denmark",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "dk"
   },
   {
     "id": 13,
     "name": "Argentina",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "ar"
   },
   {
     "id": 14,
     "name": "Iceland",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "is"
   },
   {
     "id": 15,
     "name": "Croatia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "hr"
   },
   {
     "id": 16,
     "name": "Nigeria",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "ng"
   },
   {
     "id": 17,
     "name": "Brazil",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "br"
   },
   {
     "id": 18,
     "name": "Switzerland",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "ch"
   },
   {
     "id": 19,
     "name": "Costa Rica",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "cr"
   },
   {
     "id": 20,
     "name": "Serbia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "rs"
   },
   {
     "id": 21,
     "name": "Germany",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "de"
   },
   {
     "id": 22,
     "name": "Mexico",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "mx"
   },
   {
     "id": 23,
     "name": "Sweden",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "se"
   },
   {
     "id": 24,
     "name": "South Korea",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "kr"
   },
   {
     "id": 25,
     "name": "Belgium",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "be"
   },
   {
     "id": 26,
     "name": "Panama",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "pa"
   },
   {
     "id": 27,
     "name": "Tunisia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "tn"
   },
   {
     "id": 28,
     "name": "England",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "gb-eng"
   },
   {
     "id": 29,
     "name": "Poland",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "pl"
   },
   {
     "id": 30,
     "name": "Senegal",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "sn"
   },
   {
     "id": 31,
     "name": "Colombia",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "co"
   },
   {
     "id": 32,
     "name": "Japan",
+    "played":0,
+    "win":0,
+    "draw":0,
+    "loss":0,
+    "goal":0,
+    "goalDiff":0,
+    "points":0,
+
     "iso2": "jp"
   }
 ]

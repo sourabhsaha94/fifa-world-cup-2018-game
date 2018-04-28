@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="card" ng-repeat="group in groupData">
+      <div class="card-content">
+        <div class="card-title">
+          Group {{ group.name.toUpperCase() }}
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                Country
+              </td>
+              <td>
+                Played
+              </td>
+              <td>
+                Wins
+              </td>
+              <td>
+                Draws
+              </td>
+              <td>
+                Loss
+              </td>
+              <td>
+                Goals
+              </td>
+              <td>
+                Goal Difference
+              </td>
+              <td>
+                Points
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="country in group.teams">
+              <td>
+                {{ country.name }}
+              </td>
+              <td>
+                {{ country.played }}
+              </td>
+              <td>
+                {{ country.win }}
+              </td>
+              <td>
+                {{ country.draw }}
+              </td>
+              <td>
+                {{ country.loss }}
+              </td>
+              <td>
+                {{ country.goal }}
+              </td>
+              <td>
+                {{ country.goalDiff }}
+              </td>
+              <td>
+                {{ country.points }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>  
+</div>
