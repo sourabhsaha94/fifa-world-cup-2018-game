@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col s3" ng-repeat="group in showGroups('a','d')">
+    <table>
+      <th>
+        Name
+      </th>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col s3" ng-repeat="group in showGroups('e','h')">
+
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">
+      Search the entire player database (Showing top 20 results)
+    </div>
+    <table class="responsive-table highlight">
+      <thead>
+        <tr>
+          <th>Name<input type="name" id="name" ng-model="searchName" ng-change="search(searchName,searchNationality,searchPosition,searchRating,searchValue)"placeholder="Search name"></th>
+          <th>Nationality<input type="name" id="nation" ng-model="searchNationality" ng-change="search(searchName,searchNationality,searchPosition,searchRating,searchValue)" placeholder="Search nationality"></th>
+          <th>
+            Position<input type="name" id="position" ng-model="searchPosition" ng-change="search(searchName,searchNationality,searchPosition,searchRating,searchValue)" placeholder="Search position">
+          </th>
+          <th>Rating<input type="name" id="rating" ng-model="searchRating" ng-change="search(searchName,searchNationality,searchPosition,searchRating,searchValue)" placeholder="Search maximum rating"></th>
+          <th>Value<input type="name" id="value" ng-model="searchValue" ng-change="search(searchName,searchNationality,searchPosition,searchRating,searchValue)" placeholder="Search maximum value"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="cursor:pointer" ng-repeat="player in playerData">
+          <td>
+            {{ player.Name }}
+          </td>
+          <td>
+            {{ player.Nationality }}
+          </td>
+          <td>
+            {{ player.Preffered_Position }}
+          </td>
+          <td>
+            {{ player.Rating }}
+          </td>
+          <td>
+            {{ player.Value }}m
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

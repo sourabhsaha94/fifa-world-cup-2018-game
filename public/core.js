@@ -114,8 +114,7 @@ app.controller('mainController',function($scope,$http){
   };
 
   $scope.deletePlayer = function(pos){
-    console.log(pos)
-    if($scope.teamData[pos].split("#")>1)
+    if($scope.teamData[pos].split("#").length>1)
     {
       var deletePlayerDetails = {'user':$scope.loggedInUser,'position':pos,'credit':Math.floor($scope.transferCredits + Number($scope.teamData[pos].split("#")[3]))};
       $http.post('/delete/player',JSON.stringify(deletePlayerDetails)).then(function(res){

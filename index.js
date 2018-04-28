@@ -134,7 +134,7 @@ app.post('/login', function (req, res) {
         var query = {'user':r.Username};
         teamCollection = db.collection('teams');
         teamCollection.find(query,{limit:20}).toArray(function(err,data){
-          res.send({Team:data,Username:r.Username});
+          res.send({Team:data,Username:r.Username,Schedule:schedule});
         });
       }
       else {
