@@ -356,14 +356,84 @@ app.get("/group/matches",function(req,res){
     for(var i=0;i<data.length;i++){
         let matchMap = {};
         if(data[i].type==="group")
-          matchMap = {"homeTeam":teamList[data[i].home_team-1],"awayTeam":teamList[data[i].away_team-1],"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+          matchMap = {"name":data[i].name,"homeTeam":teamList[data[i].home_team-1],"awayTeam":teamList[data[i].away_team-1],"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
         else {
-          matchMap = {"homeTeam":data[i].home_team,"awayTeam":data[i].away_team,"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+          matchMap = {"name":data[i].name,"homeTeam":data[i].home_team,"awayTeam":data[i].away_team,"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
         }
         allMatches.push(matchMap);
     }
     res.send(allMatches);
   });
+});
+
+app.post("/match/score",function(req,res){
+  matchesCollection = db.collection("matches");
+  console.log(req.body);
+  matchesCollection.updateOne({"name":req.body.matchId},{$set:{"home_result":req.body.homeGoals,"away_result":req.body.awayGoals}},function(err,r){
+    matchesCollection.find().sort({"name":1}).toArray(function(err,data){
+      let allMatches = [];
+      for(var i=0;i<data.length;i++){
+          let matchMap = {};
+          if(data[i].type==="group")
+            matchMap = {"name":data[i].name,"homeTeam":teamList[data[i].home_team-1],"awayTeam":teamList[data[i].away_team-1],"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+          else {
+            matchMap = {"name":data[i].name,"homeTeam":data[i].home_team,"awayTeam":data[i].away_team,"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+          }
+          allMatches.push(matchMap);
+      }
+      res.send(allMatches);
+    });
+  });
+  teamCollection = db.collection("teams");
+
+  //homeTeam
+  teamCollection.findOne({name:req.body.homeTeam},function(err,r){
+    let played = Number(r.played)+1;
+    let win=Number(r.win),draw=Number(r.draw),loss=Number(r.loss),goal=Number(r.goal),gd=Number(r.goalDiff),points=Number(r.points);
+
+    if(Number(req.body.homeGoals)>Number(req.body.awayGoals)){
+      win = win+1;
+      points =points+3;
+    }
+    else if(Number(req.body.homeGoals)<Number(req.body.awayGoals)){
+      loss = loss+1;
+    }
+    else{
+      draw = draw+1;
+      points = points+1;
+    }
+
+    goal = goal+Number(req.body.homeGoals);
+    gd = goalDiff+(Number(req.body.homeGoals)-Number(req.body.awayGoals));
+
+    let updateQuery = {"played":played,"win":win,"draw":draw};
+    teamCollection.updateOne({})
+    console.log(r);
+  });
+
+  //awayTeam
+  teamCollection.findOne({name:req.body.awayTeam},function(err,r){
+    let played = Number(r.played)+1;
+    let win=0,draw=0,loss=0,goal=0,gd=0,points=0;
+
+    if(Number(req.body.homeGoals)<Number(req.body.awayGoals)){
+      win = Number(r.win)+1;
+      points = Number(r.points)+3;
+    }
+    else if(Number(req.body.homeGoals)>Number(req.body.awayGoals)){
+      loss = Number(r.loss)+1;
+    }
+    else{
+      draw = Number(r.draw)+1;
+      points = Number(r.points)+1;
+    }
+
+    goal = Number(goal)+Number(req.body.awayGoals);
+    gd = Number(r.goalDiff)+(Number(req.body.awayGoals)-Number(req.body.homeGoals));
+
+    console.log(r);
+  });
+
 });
 
 /*****************************connection scripts**************************************/

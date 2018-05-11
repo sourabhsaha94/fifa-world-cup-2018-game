@@ -160,8 +160,20 @@ app.controller('mainController',function($scope,$http){
   };
 
 
-  /***************************group standings*******************************/
-  $scope.groupData = [];
+  /***************************adding scores*******************************/
+  $scope.editScore = false;
+
+  $scope.startEditScore = function(){
+    $scope.editScore = true;
+  };
+  $scope.endEditScore = function(match){
+    let toSend = {"matchId":match.name,"homeGoals":match.homeGoals,"awayGoals":match.awayGoals,"homeTeam":match.homeTeam,"awayTeam":match.awayTeam};
+    $http.post('/match/score',JSON.stringify(toSend)).then(function(res){
+      console.log(res.data);
+    });
+    $scope.editScore = false;
+  }
+
   /*************************** leaderboard *******************************/
 
   $scope.getNetWorth = function(credit){

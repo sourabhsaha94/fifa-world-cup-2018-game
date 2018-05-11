@@ -1,4 +1,4 @@
-<div class="card" ng-repeat="match in matchData">
+<div class="card" ng-repeat="match in matchData" ng-if="loggedInUser!=='admin'">
   <div class="card-content">
     <div class="row match-data">
       <div class="col s3">
@@ -9,6 +9,33 @@
       </div>
       <div class="col s3">
         {{ match.homeGoals }} - {{ match.awayGoals }}
+      </div>
+      <div class="col s3">
+        {{ match.awayTeam }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card card-hover" ng-repeat="match in matchData" ng-if="loggedInUser==='admin'">
+  <div class="card-content">
+    <div class="row match-data">
+      <div class="col s3">
+        {{ match.date }}
+      </div>
+      <div class="col s3">
+        {{ match.homeTeam }}
+      </div>
+      <div class="col s3">
+        <span ng-if="!editScore">{{ match.homeGoals }}</span>
+        <span ng-if="editScore"><input class="score-input" type="number" ng-model="match.homeGoals" /></span>
+
+        <span> - </span>
+
+        <span ng-if="!editScore">{{ match.awayGoals }}</span>
+        <span ng-if="editScore"><input class="score-input" type="number" ng-model="match.awayGoals" /></span>
+
+        <span ng-click="startEditScore()" ng-if="!editScore"><i class="material-icons">mode_edit</i></span>
+        <span ng-click="endEditScore(match)" ng-if="editScore"><i class="material-icons">done</i></span>
       </div>
       <div class="col s3">
         {{ match.awayTeam }}
