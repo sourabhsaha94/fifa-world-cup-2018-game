@@ -68,10 +68,19 @@ app.controller('mainController',function($scope,$http){
         $scope.playerData = res.data;
       });
     }
-
     else if (viewName === 'groups.html') {
       $http.get("http://"+ip_address+"/group/list").then(function(res){
         $scope.groupData = res.data;
+      });
+    }
+    else if (viewName === 'matches.html') {
+      $http.get("http://"+ip_address+"/group/matches").then(function(res){
+        $scope.matchData = res.data;
+      });
+    }
+    else if (viewName === 'leaderboard.html') {
+      $http.get("http://"+ip_address+"/users").then(function(res){
+        $scope.userData = res.data;
       });
     }
 
@@ -153,5 +162,10 @@ app.controller('mainController',function($scope,$http){
 
   /***************************group standings*******************************/
   $scope.groupData = [];
+  /*************************** leaderboard *******************************/
+
+  $scope.getNetWorth = function(credit){
+    return 500 - Number(credit);
+  };
 
 });

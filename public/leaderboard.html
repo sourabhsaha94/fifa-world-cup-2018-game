@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">
+      Top lineups
+    </div>
+    <table class="responsive-table highlight">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Points</th>
+          <th>Team Worth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="cursor:pointer" ng-repeat="user in userData">
+          <td>
+            {{ user.user }}
+          </td>
+          <td>
+            {{ user.points }}
+          </td>
+          <td>
+            ${{ getNetWorth(user.credit) }}m
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

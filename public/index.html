@@ -34,6 +34,12 @@
         <li ng-class="showView==='groups.html'?'active':''" ng-show="login">
           <a ng-click="changeView('groups.html')">Standings</a>
         </li>
+        <li ng-class="showView==='matches.html'?'active':''" ng-show="login">
+          <a ng-click="changeView('matches.html')">Matches</a>
+        </li>
+        <li ng-class="showView==='leaderboard.html'?'active':''" ng-show="login">
+          <a ng-click="changeView('leaderboard.html')">Leaderboard</a>
+        </li>
       </ul>
     </div>
   </nav>

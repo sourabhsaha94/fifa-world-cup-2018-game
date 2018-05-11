@@ -48,7 +48,7 @@ app.post('/register', function (req, res) {
     }
     else{
       lineupCollection = db.collection('lineup');
-      lineupCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK','credit':500},
+      lineupCollection.insertOne({'user':req.body.user,'ST':'ST','LW':'LW','RW':'RW','LM':'LM','CM':'CM','RM':'RM','LB':'LB','CB1':'CB','CB2':'CB','RB':'RB','GK':'GK','credit':500,'points':0},
       function(err,r){
         if(err){
           res.send("error");
@@ -58,6 +58,13 @@ app.post('/register', function (req, res) {
         }
       });
     }
+  });
+});
+
+app.get('/users',function(req,res){
+  lineupCollection = db.collection('lineup');
+  lineupCollection.find().sort({"points":-1}).toArray(function(err,data){
+    res.send(data);
   });
 });
 
@@ -339,6 +346,23 @@ app.get("/group/list",function(req,res){
       allGroups.push(group);
     }
     res.send(allGroups);
+  });
+});
+
+app.get("/group/matches",function(req,res){
+  matchesCollection = db.collection("matches");
+  matchesCollection.find().sort({"name":1}).toArray(function(err,data){
+    let allMatches = [];
+    for(var i=0;i<data.length;i++){
+        let matchMap = {};
+        if(data[i].type==="group")
+          matchMap = {"homeTeam":teamList[data[i].home_team-1],"awayTeam":teamList[data[i].away_team-1],"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+        else {
+          matchMap = {"homeTeam":data[i].home_team,"awayTeam":data[i].away_team,"date":data[i].date,"homeGoals":data[i].home_result,"awayGoals":data[i].away_result,"type":data[i].type};
+        }
+        allMatches.push(matchMap);
+    }
+    res.send(allMatches);
   });
 });
 

@@ -8,7 +8,7 @@ body{
   margin-left: 1%;
 }
 .nav-wrapper ul{
-  width: 50%;
+  width: 70%;
 }
 #username{
   font-size: 2em;
@@ -38,4 +38,8 @@ nav {
 }
 .transfer-credit{
   font-size: 3em;
+}
+.match-data{
+  font-size: 1.5em;
+  text-align: center;
 }

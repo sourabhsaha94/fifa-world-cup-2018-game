@@ -1,3 +1,18 @@
-<div class="row">
-  
+<div class="card" ng-repeat="match in matchData">
+  <div class="card-content">
+    <div class="row match-data">
+      <div class="col s3">
+        {{ match.date }}
+      </div>
+      <div class="col s3">
+        {{ match.homeTeam }}
+      </div>
+      <div class="col s3">
+        {{ match.homeGoals }} - {{ match.awayGoals }}
+      </div>
+      <div class="col s3">
+        {{ match.awayTeam }}
+      </div>
+    </div>
+  </div>
 </div>
