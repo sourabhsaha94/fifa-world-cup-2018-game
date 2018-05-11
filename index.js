@@ -368,7 +368,6 @@ app.get("/group/matches",function(req,res){
 
 app.post("/match/score",function(req,res){
   matchesCollection = db.collection("matches");
-  console.log(req.body);
   matchesCollection.updateOne({"name":req.body.matchId},{$set:{"home_result":req.body.homeGoals,"away_result":req.body.awayGoals}},function(err,r){
     matchesCollection.find().sort({"name":1}).toArray(function(err,data){
       let allMatches = [];
@@ -389,7 +388,7 @@ app.post("/match/score",function(req,res){
   //homeTeam
   teamCollection.findOne({name:req.body.homeTeam},function(err,r){
     let played = Number(r.played)+1;
-    let win=Number(r.win),draw=Number(r.draw),loss=Number(r.loss),goal=Number(r.goal),gd=Number(r.goalDiff),points=Number(r.points);
+    let win=Number(r.win),draw=Number(r.draw),loss=Number(r.loss),goal=Number(r.goal),goalDiff=Number(r.goalDiff),points=Number(r.points);
 
     if(Number(req.body.homeGoals)>Number(req.body.awayGoals)){
       win = win+1;
@@ -404,36 +403,39 @@ app.post("/match/score",function(req,res){
     }
 
     goal = goal+Number(req.body.homeGoals);
-    gd = goalDiff+(Number(req.body.homeGoals)-Number(req.body.awayGoals));
+    goalDiff = goalDiff+(Number(req.body.homeGoals)-Number(req.body.awayGoals));
 
-    let updateQuery = {"played":played,"win":win,"draw":draw};
-    teamCollection.updateOne({})
-    console.log(r);
+    let updateQuery = {"played":played,"win":win,"draw":draw,"loss":loss,"goal":goal,"goalDiff":goalDiff,"points":points};
+    teamCollection.updateOne({name:req.body.homeTeam},{$set:updateQuery},function(err,r){
+      console.log("home team updated");
+    });
   });
 
   //awayTeam
   teamCollection.findOne({name:req.body.awayTeam},function(err,r){
     let played = Number(r.played)+1;
-    let win=0,draw=0,loss=0,goal=0,gd=0,points=0;
+    let win=Number(r.win),draw=Number(r.draw),loss=Number(r.loss),goal=Number(r.goal),goalDiff=Number(r.goalDiff),points=Number(r.points);
 
     if(Number(req.body.homeGoals)<Number(req.body.awayGoals)){
-      win = Number(r.win)+1;
-      points = Number(r.points)+3;
+      win = win+1;
+      points =points+3;
     }
     else if(Number(req.body.homeGoals)>Number(req.body.awayGoals)){
-      loss = Number(r.loss)+1;
+      loss = loss+1;
     }
     else{
-      draw = Number(r.draw)+1;
-      points = Number(r.points)+1;
+      draw = draw+1;
+      points = points+1;
     }
 
-    goal = Number(goal)+Number(req.body.awayGoals);
-    gd = Number(r.goalDiff)+(Number(req.body.awayGoals)-Number(req.body.homeGoals));
+    goal = goal+Number(req.body.awayGoals);
+    goalDiff = goalDiff+(Number(req.body.awayGoals)-Number(req.body.homeGoals));
 
-    console.log(r);
+    let updateQuery = {"played":played,"win":win,"draw":draw,"loss":loss,"goal":goal,"goalDiff":goalDiff,"points":points};
+    teamCollection.updateOne({name:req.body.awayTeam},{$set:updateQuery},function(err,r){
+      console.log("away team updated");
+    });
   });
-
 });
 
 /*****************************connection scripts**************************************/

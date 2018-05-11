@@ -10,5 +10,6 @@ NodeJS, ExpressJS, MongoDB and AngularJS application for a multiplayer game like
   * `mongoimport --db fifa --collection teams --type json --drop --file teams.json --jsonArray`
   * `mongoimport --db fifa --collection groups --type json --drop --file groups.json --jsonArray`
   * `mongoimport --db fifa --collection knockout --type json --drop --file knockout.json --jsonArray`
+  * `mongoimport --db fifa --collection matches --type json --drop --file matches.json --jsonArray`
 4. Run `node index.js`
 5. Visit `https://fantasyfifaworldcup2018.localtunnel.me`
