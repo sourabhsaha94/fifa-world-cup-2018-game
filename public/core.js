@@ -19,6 +19,7 @@ app.controller('mainController',function($scope,$http){
         $scope.teamData = res.data.Team[0];
         $scope.loggedInUser = res.data.Username;
         $scope.transferCredits = res.data.Team[0].credit;
+        $scope.points = res.data.Team[0].points;
       }
     });
   };
@@ -130,10 +131,11 @@ app.controller('mainController',function($scope,$http){
   $scope.addPlayer = function(name,nationality,rating,value){
     var combinedString = name+"#"+nationality+"#"+rating+"#"+value;
     $scope.editInProgress = false;
-    var addPlayerDetails = {'user':$scope.loggedInUser,'name':combinedString,'position':$scope.position,'credit':Math.floor($scope.transferCredits - value)};
+    var addPlayerDetails = {'user':$scope.loggedInUser,'name':combinedString,'position':$scope.position,'credit':Math.floor($scope.transferCredits - value),'points':Math.round(($scope.points+(value/10))*10)/10};
     $http.post('/add/player',JSON.stringify(addPlayerDetails)).then(function(res){
       $scope.teamData = res.data;
       $scope.transferCredits = res.data.credit;
+      $scope.points = res.data.points;
       $scope.showView = 'team.html';
     });
   };
@@ -142,10 +144,11 @@ app.controller('mainController',function($scope,$http){
   $scope.deletePlayer = function(pos){
     if($scope.teamData[pos].split("#").length>1)
     {
-      var deletePlayerDetails = {'user':$scope.loggedInUser,'position':pos,'credit':Math.floor($scope.transferCredits + Number($scope.teamData[pos].split("#")[3]))};
+      var deletePlayerDetails = {'user':$scope.loggedInUser,'position':pos,'credit':Math.floor($scope.transferCredits + Number($scope.teamData[pos].split("#")[3])),'points':Math.round(($scope.points-(Number($scope.teamData[pos].split("#")[3])/10))*10)/10};
       $http.post('/delete/player',JSON.stringify(deletePlayerDetails)).then(function(res){
         $scope.teamData = res.data;
         $scope.transferCredits = res.data.credit;
+        $scope.points = res.data.points;
       });
     }
   };

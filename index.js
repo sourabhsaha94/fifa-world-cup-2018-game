@@ -210,37 +210,37 @@ app.post('/add/player/',function(req,res){
   var query = {};
   switch(pos){
     case 'ST':
-    query = {'ST':req.body.name,'credit':req.body.credit};
+    query = {'ST':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'LW':
-    query = {'LW':req.body.name,'credit':req.body.credit};
+    query = {'LW':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'RW':
-    query = {'RW':req.body.name,'credit':req.body.credit};
+    query = {'RW':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'LM':
-    query = {'LM':req.body.name,'credit':req.body.credit};
+    query = {'LM':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'CM':
-    query = {'CM':req.body.name,'credit':req.body.credit};
+    query = {'CM':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'RM':
-    query = {'RM':req.body.name,'credit':req.body.credit};
+    query = {'RM':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'LB':
-    query = {'LB':req.body.name,'credit':req.body.credit};
+    query = {'LB':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'CB1':
-    query = {'CB1':req.body.name,'credit':req.body.credit};
+    query = {'CB1':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'CB2':
-    query = {'CB2':req.body.name,'credit':req.body.credit};
+    query = {'CB2':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'RB':
-    query = {'RB':req.body.name,'credit':req.body.credit};
+    query = {'RB':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
     case 'GK':
-    query = {'GK':req.body.name,'credit':req.body.credit};
+    query = {'GK':req.body.name,'credit':req.body.credit,'points':req.body.points};
     break;
   }
   //console.log(query,req.body);
@@ -271,37 +271,37 @@ app.post('/delete/player/',function(req,res){
   var query = {};
   switch(pos){
     case 'ST':
-    query = {'ST':'ST','credit':req.body.credit};
+    query = {'ST':'ST','credit':req.body.credit,'points':req.body.points};
     break;
     case 'LW':
-    query = {'LW':'LW','credit':req.body.credit};
+    query = {'LW':'LW','credit':req.body.credit,'points':req.body.points};
     break;
     case 'RW':
-    query = {'RW':'RW','credit':req.body.credit};
+    query = {'RW':'RW','credit':req.body.credit,'points':req.body.points};
     break;
     case 'LM':
-    query = {'LM':'LM','credit':req.body.credit};
+    query = {'LM':'LM','credit':req.body.credit,'points':req.body.points};
     break;
     case 'CM':
-    query = {'CM':'CM','credit':req.body.credit};
+    query = {'CM':'CM','credit':req.body.credit,'points':req.body.points};
     break;
     case 'RM':
-    query = {'RM':'RM','credit':req.body.credit};
+    query = {'RM':'RM','credit':req.body.credit,'points':req.body.points};
     break;
     case 'LB':
-    query = {'LB':'LB','credit':req.body.credit};
+    query = {'LB':'LB','credit':req.body.credit,'points':req.body.points};
     break;
     case 'CB1':
-    query = {'CB1':'CB1','credit':req.body.credit};
+    query = {'CB1':'CB1','credit':req.body.credit,'points':req.body.points};
     break;
     case 'CB2':
-    query = {'CB2':'CB2','credit':req.body.credit};
+    query = {'CB2':'CB2','credit':req.body.credit,'points':req.body.points};
     break;
     case 'RB':
-    query = {'RB':'RB','credit':req.body.credit};
+    query = {'RB':'RB','credit':req.body.credit,'points':req.body.points};
     break;
     case 'GK':
-    query = {'GK':'GK','credit':req.body.credit};
+    query = {'GK':'GK','credit':req.body.credit,'points':req.body.points};
     break;
   }
   //console.log(query,req.body);
